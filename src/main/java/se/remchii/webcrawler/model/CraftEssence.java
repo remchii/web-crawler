@@ -11,6 +11,7 @@ public class CraftEssence {
     @Column(unique = true)
     private int idNo;
     private String name;
+    private String imgUrl;
     private int rarity;
     private int maxLvl;
     private int attack;
@@ -31,10 +32,6 @@ public class CraftEssence {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public int getIdNo() {
         return idNo;
     }
@@ -49,6 +46,14 @@ public class CraftEssence {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
     }
 
     public int getRarity() {
@@ -153,6 +158,7 @@ public class CraftEssence {
                 "id=" + id +
                 ", idNo=" + idNo +
                 ", name='" + name + '\'' +
+                ", imgUrl='" + imgUrl + '\'' +
                 ", rarity=" + rarity +
                 ", maxLvl=" + maxLvl +
                 ", attack=" + attack +

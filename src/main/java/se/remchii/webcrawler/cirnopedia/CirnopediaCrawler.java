@@ -20,7 +20,7 @@ public class CirnopediaCrawler implements Crawler {
     @Override
     public List<Document> getAllCeDocuments() {
         List<Document> cePages = new ArrayList<>();
-        int id = 1;
+        int id = 990;
         boolean isMorePages = true;
         while (isMorePages) {
             Optional<Document> ceDoc = getCeDocument(id);
@@ -31,6 +31,7 @@ public class CirnopediaCrawler implements Crawler {
                     id++;
                 } else {
                     isMorePages = false;
+                    LOG.info("No more craft essence");
                 }
             }
         }
@@ -42,8 +43,9 @@ public class CirnopediaCrawler implements Crawler {
         Document doc = null;
         try {
             doc = Jsoup.connect(BASE_URL + CE_URI + id).get();
+            LOG.info("Getting craft essence page id: {}", id);
         } catch (IOException e) {
-            LOG.warn("Error getting craft essence page with id: {}", id, e);
+            LOG.warn("Error getting craft essence page id: {}", id, e);
         }
 
         return Optional.ofNullable(doc);

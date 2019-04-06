@@ -20,7 +20,7 @@ public class CirnopediaCrawler implements Crawler {
     @Override
     public List<Document> getAllCeDocuments() {
         List<Document> cePages = new ArrayList<>();
-        int id = 990;
+        int id = 1002;
         boolean isMorePages = true;
         while (isMorePages) {
             Optional<Document> ceDoc = getCeDocument(id);

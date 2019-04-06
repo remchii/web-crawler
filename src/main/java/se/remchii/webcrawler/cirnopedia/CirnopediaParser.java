@@ -96,10 +96,17 @@ public class CirnopediaParser implements Parser {
         return ceStats;
     }
 
-    private CraftEssenceProfile parseCeProfile(Element ceProfile) {
-        CraftEssenceProfile craftEssenceProfile = new CraftEssenceProfile();
+    private CraftEssenceProfile parseCeProfile(Element profile) {
+        Elements profileElements = profile.select("td.desc");
+        CraftEssenceProfile ceProfile = new CraftEssenceProfile();
+        try {
+            ceProfile.setIllustrator(profileElements.get(0).text());
+            ceProfile.setCv(profileElements.get(1).text());
+        } catch (IndexOutOfBoundsException e) {
+            LOG.warn("Craft essence profile index out of bound");
+        }
 
-        return craftEssenceProfile;
+        return ceProfile;
     }
 
     private CraftEssenceText parseCeText(Element ceText) {

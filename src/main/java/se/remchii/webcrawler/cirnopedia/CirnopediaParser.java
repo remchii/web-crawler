@@ -69,8 +69,6 @@ public class CirnopediaParser implements Parser {
             LOG.warn("Error parsing text to integer");
         }
 
-        System.out.println(stats);
-
         return stats;
     }
 
@@ -120,9 +118,16 @@ public class CirnopediaParser implements Parser {
         return craftEssenceProfile;
     }
 
-    private CraftEssenceText parseCeText(Element ceText) {
-        CraftEssenceText craftEssenceText = new CraftEssenceText();
+    private CraftEssenceText parseCeText(Element text) {
+        Elements textElements = text.select("td.desc");
+        CraftEssenceText ceText = new CraftEssenceText();
+        try {
+            ceText.setJapaneseText(textElements.get(0).text());
+            ceText.setEnglishText(textElements.get(1).text());
+        } catch (IndexOutOfBoundsException e) {
+            LOG.warn("Craft essence text index out of bound");
+        }
 
-        return craftEssenceText;
+        return ceText;
     }
 }

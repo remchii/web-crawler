@@ -11,8 +11,11 @@ import se.remchii.webcrawler.model.CraftEssenceProfile;
 import se.remchii.webcrawler.model.CraftEssenceStats;
 import se.remchii.webcrawler.model.CraftEssenceText;
 
+import java.text.NumberFormat;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class CirnopediaParser implements Parser {
 
@@ -52,12 +55,14 @@ public class CirnopediaParser implements Parser {
             stats.setRarity(parseRarity(statsElements.get(2)));
             stats.setCost(Integer.parseInt(statsElements.get(3).text()));
             stats.setMaxLevel(Integer.parseInt(statsElements.get(4).text()));
-            stats.setAttack(statsElements.get(5).text());
-            stats.setMaxAttack(statsElements.get(6).text());
-            stats.setHp(statsElements.get(7).text());
-            stats.setMaxHp(statsElements.get(8).text());
+            stats.setAttack(parseNumber(statsElements.get(5).text()));
+            stats.setMaxAttack(parseNumber(statsElements.get(6).text()));
+            stats.setHp(parseNumber(statsElements.get(7).text()));
+            stats.setMaxHp(parseNumber(statsElements.get(8).text()));
             stats = parseEventEffect(stats, statsElements.get(9));
             stats = parseEventEffect(stats, statsElements.get(10));
+
+
         } catch (IndexOutOfBoundsException e) {
             LOG.warn("Craft essence stats index out of bound");
         } catch (NumberFormatException e) {
@@ -65,6 +70,17 @@ public class CirnopediaParser implements Parser {
         }
 
         return stats;
+    }
+
+    private int parseNumber(String text) {
+        NumberFormat format = NumberFormat.getInstance(Locale.US);
+        Number number = null;
+        try {
+            number = format.parse(text);
+        } catch (ParseException e) {
+            LOG.warn("Could not parse {} to integer", text);
+        }
+        return number.intValue();
     }
 
     private int parseRarity(Element rarity) {
@@ -109,9 +125,16 @@ public class CirnopediaParser implements Parser {
         return ceProfile;
     }
 
-    private CraftEssenceText parseCeText(Element ceText) {
-        CraftEssenceText craftEssenceText = new CraftEssenceText();
+    private CraftEssenceText parseCeText(Element text) {
+        Elements textElements = text.select("td.desc");
+        CraftEssenceText ceText = new CraftEssenceText();
+        try {
+            ceText.setJapaneseText(textElements.get(0).text());
+            ceText.setEnglishText(textElements.get(1).text());
+        } catch (IndexOutOfBoundsException e) {
+            LOG.warn("Craft essence text index out of bound");
+        }
 
-        return craftEssenceText;
+        return ceText;
     }
 }

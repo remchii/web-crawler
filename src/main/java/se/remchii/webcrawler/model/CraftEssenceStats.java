@@ -6,10 +6,10 @@ public class CraftEssenceStats {
     private int rarity;
     private int cost;
     private int maxLevel;
-    private String attack;
-    private String maxAttack;
-    private String hp;
-    private String maxHp;
+    private int attack;
+    private int maxAttack;
+    private int hp;
+    private int maxHp;
     private String effect;
     private String maxEffect;
     private String eventEffect;
@@ -55,35 +55,35 @@ public class CraftEssenceStats {
         this.maxLevel = maxLevel;
     }
 
-    public String getAttack() {
+    public int getAttack() {
         return attack;
     }
 
-    public void setAttack(String attack) {
+    public void setAttack(int attack) {
         this.attack = attack;
     }
 
-    public String getMaxAttack() {
+    public int getMaxAttack() {
         return maxAttack;
     }
 
-    public void setMaxAttack(String maxAttack) {
+    public void setMaxAttack(int maxAttack) {
         this.maxAttack = maxAttack;
     }
 
-    public String getHp() {
+    public int getHp() {
         return hp;
     }
 
-    public void setHp(String hp) {
+    public void setHp(int hp) {
         this.hp = hp;
     }
 
-    public String getMaxHp() {
+    public int getMaxHp() {
         return maxHp;
     }
 
-    public void setMaxHp(String maxHp) {
+    public void setMaxHp(int maxHp) {
         this.maxHp = maxHp;
     }
 
@@ -127,10 +127,10 @@ public class CraftEssenceStats {
                 ", rarity=" + rarity +
                 ", cost=" + cost +
                 ", maxLevel=" + maxLevel +
-                ", attack='" + attack + '\'' +
-                ", maxAttack='" + maxAttack + '\'' +
-                ", hp='" + hp + '\'' +
-                ", maxHp='" + maxHp + '\'' +
+                ", attack=" + attack +
+                ", maxAttack=" + maxAttack +
+                ", hp=" + hp +
+                ", maxHp=" + maxHp +
                 ", effect='" + effect + '\'' +
                 ", maxEffect='" + maxEffect + '\'' +
                 ", eventEffect='" + eventEffect + '\'' +

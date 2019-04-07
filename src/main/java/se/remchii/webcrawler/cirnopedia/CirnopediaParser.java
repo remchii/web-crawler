@@ -39,9 +39,34 @@ public class CirnopediaParser implements Parser {
             CraftEssenceStats ceStats = parseCeStats(ceInfo.get(0));
             CraftEssenceProfile ceProfile = parseCeProfile(ceInfo.get(1));
             CraftEssenceText ceText = parseCeText(ceInfo.get(2));
+            craftEssence = combineCeInfo(ceStats, ceProfile, ceText);
         } catch (IndexOutOfBoundsException e) {
             LOG.warn("Some craft essence info could not be parsed", e);
         }
+
+        return craftEssence;
+    }
+
+    private CraftEssence combineCeInfo(CraftEssenceStats ceStats, CraftEssenceProfile ceProfile, CraftEssenceText cetext) {
+        CraftEssence craftEssence = new CraftEssence();
+        craftEssence.setIdNo(ceStats.getIdNo());
+        craftEssence.setName(ceStats.getName());
+        craftEssence.setRarity(ceStats.getRarity());
+        craftEssence.setCost(ceStats.getCost());
+        craftEssence.setMaxLevel(ceStats.getMaxLevel());
+        craftEssence.setAttack(ceStats.getAttack());
+        craftEssence.setMaxAttack(ceStats.getMaxAttack());
+        craftEssence.setHp(ceStats.getHp());
+        craftEssence.setMaxHp(ceStats.getMaxHp());
+        craftEssence.setEffect(ceStats.getEffect());
+        craftEssence.setMaxEffect(ceStats.getMaxEffect());
+        craftEssence.setEventEffect(ceStats.getEventEffect());
+        craftEssence.setMaxEventEffect(ceStats.getMaxEventEffect());
+        craftEssence.setMaxEventEffect(ceStats.getMaxEventEffect());
+        craftEssence.setIllustrator(ceProfile.getIllustrator());
+        craftEssence.setCv(ceProfile.getCv());
+        craftEssence.setJapaneseText(cetext.getJapaneseText());
+        craftEssence.setEnglishText(cetext.getEnglishText());
 
         return craftEssence;
     }
@@ -61,8 +86,6 @@ public class CirnopediaParser implements Parser {
             stats.setMaxHp(parseNumber(statsElements.get(8).text()));
             stats = parseEventEffect(stats, statsElements.get(9));
             stats = parseEventEffect(stats, statsElements.get(10));
-
-
         } catch (IndexOutOfBoundsException e) {
             LOG.warn("Craft essence stats index out of bound");
         } catch (NumberFormatException e) {

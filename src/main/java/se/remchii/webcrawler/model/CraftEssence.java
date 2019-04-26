@@ -5,11 +5,8 @@ import javax.persistence.*;
 @Entity
 public class CraftEssence {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    @Column(unique = true)
-    private int idNo;
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY) private Long id;
+    @Column(unique = true) private int idNo;
     private String name;
     private int rarity;
     private int cost;
@@ -18,14 +15,14 @@ public class CraftEssence {
     private int maxAttack;
     private int hp;
     private int maxHp;
-    private String effect;
-    private String maxEffect;
+    @Column(length = 1024) private String effect;
+    @Column(length = 1024) private String maxEffect;
     private String eventEffect;
     private String maxEventEffect;
     private String illustrator;
     private String cv;
-    private String japaneseText;
-    private String englishText;
+    @Column(length = 1024) private String japaneseText;
+    @Column(length = 1024) private String englishText;
     private String imageUrl;
 
     public CraftEssence() {

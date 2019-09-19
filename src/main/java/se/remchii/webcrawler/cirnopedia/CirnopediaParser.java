@@ -49,24 +49,9 @@ public class CirnopediaParser implements Parser {
 
     private CraftEssence combineCeInfo(CraftEssenceStats ceStats, CraftEssenceProfile ceProfile, CraftEssenceText cetext) {
         CraftEssence craftEssence = new CraftEssence();
-        craftEssence.setIdNo(ceStats.getIdNo());
-        craftEssence.setName(ceStats.getName());
-        craftEssence.setRarity(ceStats.getRarity());
-        craftEssence.setCost(ceStats.getCost());
-        craftEssence.setMaxLevel(ceStats.getMaxLevel());
-        craftEssence.setAttack(ceStats.getAttack());
-        craftEssence.setMaxAttack(ceStats.getMaxAttack());
-        craftEssence.setHp(ceStats.getHp());
-        craftEssence.setMaxHp(ceStats.getMaxHp());
-        craftEssence.setEffect(ceStats.getEffect());
-        craftEssence.setMaxEffect(ceStats.getMaxEffect());
-        craftEssence.setEventEffect(ceStats.getEventEffect());
-        craftEssence.setMaxEventEffect(ceStats.getMaxEventEffect());
-        craftEssence.setMaxEventEffect(ceStats.getMaxEventEffect());
-        craftEssence.setIllustrator(ceProfile.getIllustrator());
-        craftEssence.setCv(ceProfile.getCv());
-        craftEssence.setJapaneseText(cetext.getJapaneseText());
-        craftEssence.setEnglishText(cetext.getEnglishText());
+        craftEssence.setCeStats(ceStats);
+        craftEssence.setCeProfile(ceProfile);
+        craftEssence.setCeText(cetext);
 
         return craftEssence;
     }

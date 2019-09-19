@@ -1,5 +1,8 @@
 package se.remchii.webcrawler.model;
 
+import javax.persistence.Embeddable;
+
+@Embeddable
 public class CraftEssenceProfile {
     private String illustrator;
     private String cv;

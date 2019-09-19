@@ -1,8 +1,13 @@
 package se.remchii.webcrawler.model;
 
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
+
+@Embeddable
 public class CraftEssenceStats {
-    private String name;
+    @Column(unique = true)
     private int idNo;
+    private String name;
     private int rarity;
     private int cost;
     private int maxLevel;
@@ -10,9 +15,13 @@ public class CraftEssenceStats {
     private int maxAttack;
     private int hp;
     private int maxHp;
+    @Column(length = 512)
     private String effect;
+    @Column(length = 512)
     private String maxEffect;
+    @Column(length = 512)
     private String eventEffect;
+    @Column(length = 512)
     private String maxEventEffect;
 
     public String getName() {
@@ -122,8 +131,8 @@ public class CraftEssenceStats {
     @Override
     public String toString() {
         return "CraftEssenceStats{" +
-                "name='" + name + '\'' +
-                ", idNo=" + idNo +
+                "idNo=" + idNo +
+                ", name='" + name + '\'' +
                 ", rarity=" + rarity +
                 ", cost=" + cost +
                 ", maxLevel=" + maxLevel +

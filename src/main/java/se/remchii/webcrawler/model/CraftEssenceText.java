@@ -1,7 +1,13 @@
 package se.remchii.webcrawler.model;
 
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
+
+@Embeddable
 public class CraftEssenceText {
+    @Column(length = 1024)
     private String japaneseText;
+    @Column(length = 1024)
     private String englishText;
 
     public String getJapaneseText() {
